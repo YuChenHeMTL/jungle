@@ -51,10 +51,15 @@
       <% end %>
     </div>
   </div>
-  <% else %>
+  <% elsif cart.count === 0 && current_user %>
     <h2>Your cart is empty. To add items to Your Cart, go to </h2>
     <%= link_to root_path  do%>
       <h3>Main Page</h3>
+    <% end %>
+  <% else %>
+    <h2> You are not logged in. To log in, </h2>
+    <%= link_to login_path  do%>
+      <h3>Login</h3>
     <% end %>
   <% end %>
 
