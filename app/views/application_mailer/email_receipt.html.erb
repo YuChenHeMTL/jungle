@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>Hi <%= @user.first_name %></h1>
+    <h2> Here is the details of your order</h2>
+    <div class="panel panel-default items">
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th colspan="2">Product</th>
+            <th>Unit Price</th>
+            <th>Quantity</th>
+            <th>Price</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @order_total = 0 %>
+          <% order_products = LineItem.where(order_id: @order_info.id)%>
+          <% order_products.each do |order_product| %>
+            <%= render 'item', order_product: order_product %>
+          <% end %>
+        </tbody>
+        <tfoot>
+          <tr>
+            <th colspan="4">
+              TOTAL:
+            </th>
+            <th>
+              <%= @order_total %>
+            </th>
+          </tr>
+          <tr>
+            <th colspan="4">
+              Email: <%= @order_info.email %>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+  </body>
+</html>
