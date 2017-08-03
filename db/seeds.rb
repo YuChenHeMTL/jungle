@@ -36,7 +36,7 @@ puts "Re-creating Products ..."
 Product.destroy_all
 
 cat1.products.create!({
-  name:  'Men\'s Classy shirt',
+  name:  Faker::RickAndMorty.quote,
   description: Faker::Hipster.paragraph(4),
   image: open_asset('apparel1.jpg'),
   quantity: 10,
@@ -44,7 +44,7 @@ cat1.products.create!({
 })
 
 cat1.products.create!({
-  name:  'Women\'s Zebra pants',
+  name:  Faker::RickAndMorty.quote,
   description: Faker::Hipster.paragraph(4),
   image: open_asset('apparel2.jpg'),
   quantity: 18,
@@ -52,7 +52,7 @@ cat1.products.create!({
 })
 
 cat1.products.create!({
-  name:  'Hipster Hat',
+  name: Faker::RickAndMorty.quote,
   description: Faker::Hipster.paragraph(4),
   image: open_asset('apparel3.jpg'),
   quantity: 4,
@@ -60,7 +60,7 @@ cat1.products.create!({
 })
 
 cat1.products.create!({
-  name:  'Hipster Socks',
+  name:  Faker::RickAndMorty.quote,
   description: Faker::Hipster.paragraph(4),
   image: open_asset('apparel4.jpg'),
   quantity: 8,
@@ -68,7 +68,7 @@ cat1.products.create!({
 })
 
 cat1.products.create!({
-  name:  'Russian Spy Shoes',
+  name: Faker::RickAndMorty.quote,
   description: Faker::Hipster.paragraph(4),
   image: open_asset('apparel5.jpg'),
   quantity: 8,
@@ -76,7 +76,7 @@ cat1.products.create!({
 })
 
 cat1.products.create!({
-  name:  'Human Feet Shoes',
+  name: Faker::RickAndMorty.quote,
   description: Faker::Hipster.paragraph(4),
   image: open_asset('apparel6.jpg'),
   quantity: 82,
@@ -85,7 +85,7 @@ cat1.products.create!({
 
 
 cat2.products.create!({
-  name:  'Modern Skateboards',
+  name: Faker::RickAndMorty.quote,
   description: Faker::Hipster.paragraph(4),
   image: open_asset('electronics1.jpg'),
   quantity: 40,
@@ -93,7 +93,7 @@ cat2.products.create!({
 })
 
 cat2.products.create!({
-  name:  'Hotdog Slicer',
+  name: Faker::RickAndMorty.quote,
   description: Faker::Hipster.paragraph(4),
   image: open_asset('electronics2.jpg'),
   quantity: 3,
@@ -101,7 +101,7 @@ cat2.products.create!({
 })
 
 cat2.products.create!({
-  name:  'World\'s Largest Smartwatch',
+  name: Faker::RickAndMorty.quote,
   description: Faker::Hipster.paragraph(4),
   image: open_asset('electronics3.jpg'),
   quantity: 32,
@@ -109,7 +109,7 @@ cat2.products.create!({
 })
 
 cat3.products.create!({
-  name:  'Optimal Sleeping Bed',
+  name: Faker::RickAndMorty.quote,
   description: Faker::Hipster.paragraph(4),
   image: open_asset('furniture1.jpg'),
   quantity: 320,
@@ -117,7 +117,7 @@ cat3.products.create!({
 })
 
 cat3.products.create!({
-  name:  'Electric Chair',
+  name: Faker::RickAndMorty.quote,
   description: Faker::Hipster.paragraph(4),
   image: open_asset('furniture2.jpg'),
   quantity: 2,
@@ -125,7 +125,7 @@ cat3.products.create!({
 })
 
 cat3.products.create!({
-  name:  'Red Bookshelf',
+  name: Faker::RickAndMorty.quote,
   description: Faker::Hipster.paragraph(4),
   image: open_asset('furniture3.jpg'),
   quantity: 0,
