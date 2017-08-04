@@ -1,4 +1,4 @@
-<section class="products-show">
+<section class="product-show">
 
   <header class="page-header">
     <h1><%= link_to @product.category.name, @product.category %> &raquo; <%= @product.name %></h1>
@@ -9,7 +9,7 @@
     <div class="row">
 
       <div class="col-sm-4">
-        <%= image_tag @product.image.url, class: 'main-img' %>
+        <%= image_tag @product.image.url, class: 'main-img'%>
       </div>
 
       <div class="col-sm-8">
@@ -29,3 +29,44 @@
   </article>
 
 </section>
+
+<section class="new_review">
+  <div class="row">
+    <div class="col-sm-6 col-sm-offset-1">
+      <%= form_for [@product, @review], url: product_reviews_path(@product.id) do |f| %>
+        <div class="form-group">
+          <%= f.label :description %>:
+          <%= f.text_area :description %><br />
+        </div>
+        <div class="form-group">
+          <%= f.label :rating %>:
+          <%= f.select :rating, [['horrible', 1], ['poor', 2], ['mediocre', 3], ['good', 4], ['great', 5]] %><br />
+        </div>
+        <%= f.submit 'Create Category', class: 'btn btn-primary' %>
+      <% end %>
+    </div>
+  </div>
+</section>
+
+<section class="product-reviews">
+  <% @reviews = @reviews.sort_by {|obj| obj.created_at }.reverse %>
+  <% @reviews.each do |details| %>
+    <% @user_review = User.find(details.user_id) %>
+    <article>
+      <div class="row">
+        <div class="col-sm-4 stars">
+          <h3><%= details.rating %> Stars</h3>
+        </div>
+        <div class="col-sm-8">
+          <dl class="dl-horizontal">
+          <dt>User</dt>
+          <dd><%= @user_review.first_name %> <%= @user_review.last_name %></dd>
+          <dt>Review</dt>
+          <dd><%= details.description %></dd>
+          </dl>
+        </div>
+      </div>
+    </article>
+  <% end %>
+</section>
+
