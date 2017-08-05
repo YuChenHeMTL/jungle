@@ -5,7 +5,7 @@
   </head>
   <body>
     <h1>Hi <%= @user.first_name %></h1>
-    <h2> Here is the details of your order</h2>
+    <h2> Here is the details of your order #<%= @order_info.id%></h2>
     <div class="panel panel-default items">
       <table class="table table-bordered">
         <thead>
@@ -32,10 +32,12 @@
               <%= @order_total %>
             </th>
           </tr>
+          <% if @order_info.email %>
           <tr>
             <th colspan="4">
               Email: <%= @order_info.email %>
           </tr>
+          <% end %>
         </tfoot>
       </table>
     </div>

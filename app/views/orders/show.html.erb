@@ -34,10 +34,12 @@
             <%= @order_total %>
           </th>
         </tr>
+        <% if @order.email %>
         <tr>
           <th colspan="4">
             Email: <%= @order.email %>
         </tr>
+        <% end %>
       </tfoot>
     </table>
   </div>

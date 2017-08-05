@@ -4,6 +4,8 @@ class ApplicationMailer < ActionMailer::Base
   def email_receipt(order)
     @user = User.where(email: order.email).first
     @order_info = order
-    mail(to: @user.email, subject: 'Jungle Email Receipt')
+    if @user
+      mail(to: @user.email, subject: "Jungle Email Receipt, Order ##{@order_info.id}")
+    end
   end
 end

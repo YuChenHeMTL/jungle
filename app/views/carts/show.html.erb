@@ -4,7 +4,7 @@
     <h1>My Cart</h1>
   </header>
 
-  <% if cart.count != 0 && current_user%>
+  <% if cart.count != 0 %>
   <div class="panel panel-default items">
     <table class="table table-bordered">
       <thead>
@@ -43,23 +43,26 @@
             data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
             data-amount="<%= @cart_total * 100 %>"
             data-name="Jungle"
+            <% if @session_user %>
             data-description="<%= @session_user.first_name%>'s Jungle Order"
+            <% else %>
+            data-description="Jungle Order"
+            <% end %>
             data-locale="auto"
+            <% if @session_user %>
             data-email=<%= @session_user.email%>
+            <% else %>
+            data-email="guest@example.com"
+            <% end %>
             data-currency="cad">
           </script>
       <% end %>
     </div>
   </div>
-  <% elsif cart.count === 0 && current_user %>
+  <% else %>
     <h2>Your cart is empty. To add items to Your Cart, go to </h2>
     <%= link_to root_path  do%>
       <h3>Main Page</h3>
-    <% end %>
-  <% else %>
-    <h2> You are not logged in. To log in, </h2>
-    <%= link_to login_path  do%>
-      <h3>Login</h3>
     <% end %>
   <% end %>
 
