@@ -9,7 +9,7 @@
     <div class="row">
 
       <div class="col-sm-4">
-        <%= image_tag @product.image.url, class: 'main-img'%>
+        <%= image_tag @product.image.url, class: 'img-responsive'%>
       </div>
 
       <div class="col-sm-8">
@@ -25,30 +25,23 @@
         </dl>
       </div>
     </div>
-
   </article>
-
-</section>
-
-<section class="new_review">
-  <div class="row">
-    <div class="col-sm-6 col-sm-offset-1">
-      <%= form_for [@product, @review], url: product_reviews_path(@product.id) do |f| %>
-        <div class="form-group">
-          <%= f.label :description %>:
-          <%= f.text_area :description %><br />
-        </div>
-        <div class="form-group">
-          <%= f.label :rating %>:
-          <%= f.select :rating, [['horrible', 1], ['poor', 2], ['mediocre', 3], ['good', 4], ['great', 5]] %><br />
-        </div>
-        <%= f.submit 'Create Category', class: 'btn btn-primary' %>
-      <% end %>
+  <% if current_user %>
+    <div class="new-review row">
+        <%= form_for [@product, @review], url: product_reviews_path(@product.id) do |f| %>
+          <div class="form-group col-sm-5">
+            <h3><%= f.label :rating %>:</h3>
+            <%= f.select :rating, [['5 stars: good stuff', 5],['4 stars: ok stuff', 4] , ['3 stars: meh', 3], ['2 stars: wouldnt buy it', 2], ['1 star: just ewwwwww', 1]] %><br />
+          </div>
+          <div class="form-group col-sm-7 description">
+            <h3><%= f.label :description %>:</h3>
+            <%= f.text_area :description, class: "form-control"%><br />
+          </div>
     </div>
-  </div>
-</section>
+      <%= f.submit 'Write Review', class: 'btn btn-primary' %>
+    <% end %>
+  <% end %>
 
-<section class="product-reviews">
   <% @reviews = @reviews.sort_by {|obj| obj.created_at }.reverse %>
   <% @reviews.each do |details| %>
     <% @user_review = User.find(details.user_id) %>
@@ -57,7 +50,7 @@
         <div class="col-sm-4 stars">
           <h3><%= details.rating %> Stars</h3>
         </div>
-        <div class="col-sm-8">
+        <div class="col-sm-7">
           <dl class="dl-horizontal">
           <dt>User</dt>
           <dd><%= @user_review.first_name %> <%= @user_review.last_name %></dd>
@@ -65,8 +58,14 @@
           <dd><%= details.description %></dd>
           </dl>
         </div>
+      <% if current_user && current_user.id === details.user_id %>
+      <div class="col-sm-1">
+        <%= link_to fa_icon('trash'),product_review_remove_review_path(@product.id, details.id), class: 'btn btn-sm btn-danger', method: :delete, data: { confirm: "Are you sure?" } %>
       </div>
+      <% end %>
     </article>
   <% end %>
 </section>
+
+
 

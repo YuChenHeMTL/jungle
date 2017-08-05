@@ -53,6 +53,7 @@ main section.categories-show {
 
       aside.sold_out{
         position: absolute;
+        color: white;
         top: 0;
         left: 0;
         padding: 10px;
@@ -70,24 +71,9 @@ main section.categories-show {
           opacity: 1.0;
         }
       }
-
     }
   }
 }
 
-main section.products-show {
-
-  .product-detail {
-    img.main-img {
-      max-width: 100%;
-    }
-  }
-}
-
-main section.product_reviews {
-  .stars{
-    line-height: 20px;
-  }
-}
 
 
