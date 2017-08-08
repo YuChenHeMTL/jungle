@@ -54,4 +54,13 @@ RSpec.describe User, type: :model do
     end
 
   end
+
+  describe 'POST #session#create' do
+    context "when login successful" do
+      it "should redirect to main page" do
+        post ("/login"), session: { email: "bob.robert@gmail.com", password: "bob"}
+        expect (response).to redirect_to(root_path)
+      end
+    end
+  end
 end
